@@ -20,10 +20,16 @@
 			// stores 2d rendering context, tool used to paint on canvas
 			const ctx = canvas.getContext('2d');
 
+			// paddle
 			const paddleWidth = 75;
 			const paddleHeight = 10;
 			const paddleX = (canvas.width - paddleWidth)/2;
 
+			// default paddle controls
+			let leftPress = false;
+			let rightPress = false;
+
+			// ball
 			let ballRadius = 10;
 
 			let x = canvas.width/2;
@@ -58,6 +64,29 @@
 				}
 			}
 
+			// e.key finds string, e.which finds number associated with key
+			function handleKeyDown(e) {
+				if(e.key == 'ArrowLeft') {
+					leftPress = true;
+				} 
+				else if(e.key == 'ArrowRight') {
+					rightPress = true;
+				}	
+			}
+
+			function handleKeyUp() {
+				if(e.key == 'ArrowLeft') {
+					leftPress = false;
+				}
+				else if(e.key == 'ArrowRight') {
+					rightPress = false;
+				}
+			}
+
+			function movePaddle() {
+				
+			}
+
 			function draw() {
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 				drawBall();
@@ -66,6 +95,8 @@
 				y+=dy;
 				checkBoundaries();
 			}
+			document.addEventListener('keydown', handleKeyDown, false);
+			document.addEventListener('keyup', handleKeyUp, false)
 			setInterval(draw, 10);
 		} else {
 			const msg = document.getElementById('msg')
