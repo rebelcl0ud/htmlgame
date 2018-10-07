@@ -5,13 +5,47 @@
 	<title>little canvas</title>
 	<style>
 		* { padding: 0; margin: 0; }
+		div { text-align: center; }
 		canvas { background: #eee; display: block; margin: 0 auto; }
 	</style>
 </head>
 <body>
+	<div id="msg"></div>
 	<canvas id="myCanvas" width="480" height="320"></canvas>
 	<script>
-		// JS goes here
+		// 
+		const canvas = document.getElementById('myCanvas');
+		
+		if(canvas.getContext) {
+			// stores 2d rendering context, tool used to paint on canvas
+			const ctx = canvas.getContext('2d');
+
+			// rect: 
+			// first 2 values: left/top corner coordinates; last 2 values: width + height
+			ctx.beginPath();
+			ctx.fillStyle = '#00ff00';
+			ctx.fillRect(20, 40, 50, 50);
+			ctx.closePath();	
+
+			// circle:
+			// first 2 values: x/y coordinates of arc's center; arc radius; start + end angle; direction of drawing (false=clockwise, default/ optional) 
+			ctx.beginPath();
+			ctx.arc(240, 160, 20, 0, Math.PI*2, false);
+			ctx.fillStyle = 'pink';
+			ctx.fill();
+			ctx.closePath();
+
+			// stroke instead of fill
+			ctx.beginPath();
+			ctx.strokeStyle = 'rgba(0, 0, 255, 0.5)';
+			ctx.strokeRect(160, 10, 100, 40);
+			ctx.closePath();
+		}
+		else {
+			const msg = document.getElementById('msg')
+			msg.innerHTML = 'canvas unsupported';
+		}
+		
 	</script>
 </body>
 </html>
