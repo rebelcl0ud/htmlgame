@@ -62,8 +62,8 @@
 						if(bricks[bc][br].status === 1) {
 							let brickX = (bc * (brickWidth + brickPadding)) + brickOffsetLeft;
 							let brickY = (br * (brightHeight + brickPadding)) + brickOffsetTop;
-							bricks[bc][br].x = 0;
-							bricks[bc][br].y = 0;
+							bricks[bc][br].x = brickX;
+							bricks[bc][br].y = brickY;
 							ctx.beginPath();
 							ctx.fillStyle = '#00ff00';
 							ctx.fillRect(brickX, brickY, brickWidth, brightHeight);
@@ -132,8 +132,11 @@
 				for(let bc=0; bc < brickColCount; bc++) {
 					for(let br=0; br < brickRowCount; br++) {
 						let brick = bricks[bc][br];
-						if(x > brick.x && x < brick.x + brickWidth && y > brick.y && y < brick.y + brightHeight ) {
-							dy = -dy;
+						if(brick.status === 1) {
+							if(x > brick.x && x < brick.x + brickWidth && y > brick.y && y < brick.y + brightHeight ) {
+								dy = -dy;
+								brick.status = 0;
+							}
 						}
 					}
 				}
@@ -154,6 +157,7 @@
 				drawBricks();
 				drawBall();
 				movePaddle();
+				detectBrickCollision();
 				x+=dx;
 				y+=dy;
 				checkBoundaries();
