@@ -126,6 +126,17 @@
 				}
 			}
 
+			function detectBrickCollision() {
+				for(let bc=0; bc < brickColCount; bc++) {
+					for(let br=0; br < brickRowCount; br++) {
+						let brick = bricks[bc][br];
+						if(x > brick.x && x < brick.x + brickWidth && y > brick.y && y < brick.y + brightHeight ) {
+							dy = -dy;
+						}
+					}
+				}
+			}
+
 			function movePaddle() {
 				drawPaddle();
 				if(leftPress && paddleX > 0) {
