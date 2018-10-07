@@ -31,7 +31,7 @@
 
 			// ball
 			let ballRadius = 10;
-
+			// positoon of ball
 			let x = canvas.width/2;
 			let y = canvas.height - 30;
 			
@@ -64,8 +64,13 @@
 					dy = -dy;
 				}
 				else if(y + dy > canvas.height - ballRadius) {
-					alert('Game Over');
-					document.location.reload();
+					if(x > paddleX && x < paddleX + paddleWidth) {
+						dy = -dy;
+					}
+					else {
+						alert('Game Over');
+						document.location.reload();
+					}
 				}
 			}
 
