@@ -56,6 +56,19 @@
 			let dx = 2;
 			let dy = -2;
 
+			function drawBricks() {
+				for(let bc=0; bc < brickColCount; bc++) {
+					for(let br=0; br < brickRowCount; br++) {
+						bricks[bc][br].x = 0;
+						bricks[bc][br].y = 0;
+						ctx.beginPath();
+						ctx.fillStyle = '#00ff00';
+						ctx.fillRect(0, 0, brickWidth, brightHeight);
+						ctx.closePath();					
+					}
+				}
+			}
+
 			function drawBall() {
 				ctx.beginPath();
 				ctx.arc(x, y, ballRadius, 0, Math.PI*2);
@@ -123,6 +136,7 @@
 
 			function draw() {
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				drawBricks();
 				drawBall();
 				movePaddle();
 				x+=dx;
