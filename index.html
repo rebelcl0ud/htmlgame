@@ -34,7 +34,7 @@
 			for(let bc=0; bc < brickColCount; bc++) {
 				bricks[bc] = [];
 				for(let br=0; br < brickRowCount; br++) {
-					bricks[bc][br] = { x:0, y:0 };
+					bricks[bc][br] = { x:0, y:0, status:1 };
 				}
 			}
 
@@ -59,14 +59,16 @@
 			function drawBricks() {
 				for(let bc=0; bc < brickColCount; bc++) {
 					for(let br=0; br < brickRowCount; br++) {
-						let brickX = (bc * (brickWidth + brickPadding)) + brickOffsetLeft;
-						let brickY = (br * (brightHeight + brickPadding)) + brickOffsetTop;
-						bricks[bc][br].x = 0;
-						bricks[bc][br].y = 0;
-						ctx.beginPath();
-						ctx.fillStyle = '#00ff00';
-						ctx.fillRect(brickX, brickY, brickWidth, brightHeight);
-						ctx.closePath();					
+						if(bricks[bc][br].status === 1) {
+							let brickX = (bc * (brickWidth + brickPadding)) + brickOffsetLeft;
+							let brickY = (br * (brightHeight + brickPadding)) + brickOffsetTop;
+							bricks[bc][br].x = 0;
+							bricks[bc][br].y = 0;
+							ctx.beginPath();
+							ctx.fillStyle = '#00ff00';
+							ctx.fillRect(brickX, brickY, brickWidth, brightHeight);
+							ctx.closePath();	
+						}				
 					}
 				}
 			}
