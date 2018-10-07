@@ -20,9 +20,12 @@
 			// stores 2d rendering context, tool used to paint on canvas
 			const ctx = canvas.getContext('2d');
 
+			let x = canvas.width/2;
+			let y = canvas.height - 30;
+
 			function draw() {
 				ctx.beginPath();
-				ctx.arc(50, 50, 10, 0, Math.PI*2);
+				ctx.arc(x, y, 10, 0, Math.PI*2);
 				ctx.fillStyle = '#0095dd';
 				ctx.fill();
 				ctx.closePath();
