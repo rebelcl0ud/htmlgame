@@ -20,6 +20,24 @@
 			// stores 2d rendering context, tool used to paint on canvas
 			const ctx = canvas.getContext('2d');
 
+			// bricks
+			let brickRowCount = 3;
+			let brickColCount = 5;
+			let brickWidth = 75;
+			let brightHeight= 15;
+			let brickPadding = 10;
+			let brickOffsetTop = 30;
+			let brickOffsetLeft = 30;
+
+			// bricks container
+			let bricks = [];
+			for(let bc=0; bc < brickColCount; bc++) {
+				bricks[bc] = [];
+				for(let br=0; br < brickRowCount; br++) {
+					bricks[bc][br] = { x:0, y:0 };
+				}
+			}
+
 			// paddle
 			const paddleWidth = 75;
 			const paddleHeight = 10;
