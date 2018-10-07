@@ -59,11 +59,13 @@
 			function drawBricks() {
 				for(let bc=0; bc < brickColCount; bc++) {
 					for(let br=0; br < brickRowCount; br++) {
+						let brickX = (bc * (brickWidth + brickPadding)) + brickOffsetLeft;
+						let brickY = (br * (brightHeight + brickPadding)) + brickOffsetTop;
 						bricks[bc][br].x = 0;
 						bricks[bc][br].y = 0;
 						ctx.beginPath();
 						ctx.fillStyle = '#00ff00';
-						ctx.fillRect(0, 0, brickWidth, brightHeight);
+						ctx.fillRect(brickX, brickY, brickWidth, brightHeight);
 						ctx.closePath();					
 					}
 				}
