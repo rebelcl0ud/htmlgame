@@ -36,8 +36,13 @@
 			}
 
 			function checkBoundaries() {
+				// checks top/bottom boundary
 				if(y + dy < 0 || y + dy > canvas.height) {
 					dy = -dy;
+				}
+				// checks left/right boundary
+				if(x + dx < 0 || x + dx > canvas.width) {
+					dx = -dx;
 				}
 			}
 
@@ -46,6 +51,7 @@
 				drawBall();
 				x+=dx;
 				y+=dy;
+				checkBoundaries();
 			}
 			setInterval(draw, 10);
 		} else {
