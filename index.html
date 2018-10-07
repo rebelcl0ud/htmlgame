@@ -54,13 +54,18 @@
 			}
 
 			function checkBoundaries() {
-				// checks top/bottom boundary
-				if(y + dy < ballRadius || y + dy > canvas.height - ballRadius) {
-					dy = -dy;
-				}
 				// checks left/right boundary
 				if(x + dx < ballRadius || x + dx > canvas.width - ballRadius) {
 					dx = -dx;
+				}
+
+				// [edit] checks top/bottom boundary
+				if(y + dy < ballRadius) {
+					dy = -dy;
+				}
+				else if(y + dy > canvas.height - ballRadius) {
+					alert('Game Over');
+					document.location.reload();
 				}
 			}
 
