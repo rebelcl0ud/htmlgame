@@ -20,6 +20,8 @@
 			// stores 2d rendering context, tool used to paint on canvas
 			const ctx = canvas.getContext('2d');
 			
+			// lives
+			let lives = 3;
 			// score
 			let score = 0;
 			
@@ -59,6 +61,12 @@
 			
 			let dx = 2;
 			let dy = -2;
+
+			function drawLives() {
+				ctx.font = '16px Arial';
+				ctx.fillStyle = '#0095DD';
+				ctx.fillText(`LIVES: ${lives}`, 100, 20);
+			}
 
 			function drawScore() {
 				ctx.font = '16px Arial';
@@ -113,9 +121,19 @@
 						dy = -dy;
 					}
 					else {
-						alert('Game Over');
-						document.location.reload();
-						// https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
+						lives--;
+						if(!lives) {
+							alert('Game Over');
+							document.location.reload();
+							// https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
+						}
+						else {
+							x = canvas.width/2;
+							y = canvas.height - 30;
+							dx = 2;
+							dy = -3;
+							paddleX = (canvas.width - paddleWidth)/2;
+						}
 					}
 				}
 			}
@@ -183,6 +201,7 @@
 
 			function draw() {
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				drawLives();
 				drawScore();
 				drawBricks();
 				drawBall();
