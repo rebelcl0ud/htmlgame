@@ -154,6 +154,10 @@
 								dy = -dy;
 								brick.status = 0;
 								score++;
+								if(score == brickColCount * brickRowCount) {
+									alert('Nice, you snagged them all :) #winner');
+									document.location.reload();
+								}
 							}
 						}
 					}
