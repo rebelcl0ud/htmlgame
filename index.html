@@ -19,7 +19,10 @@
 		if(canvas.getContext) {
 			// stores 2d rendering context, tool used to paint on canvas
 			const ctx = canvas.getContext('2d');
-
+			
+			// score
+			let score = 0;
+			
 			// bricks
 			let brickRowCount = 3;
 			let brickColCount = 5;
@@ -29,7 +32,7 @@
 			let brickOffsetTop = 30;
 			let brickOffsetLeft = 30;
 
-			// bricks container
+			// bricks container | grid | 2d array
 			let bricks = [];
 			for(let bc=0; bc < brickColCount; bc++) {
 				bricks[bc] = [];
@@ -56,6 +59,12 @@
 			
 			let dx = 2;
 			let dy = -2;
+
+			function drawScore() {
+				ctx.font = '16px Arial';
+				ctx.fillStyle = '#0095DD';
+				ctx.fillText = (`SCORE: ${score}`, 8, 20);
+			}
 
 			function drawBricks() {
 				for(let bc=0; bc < brickColCount; bc++) {
@@ -109,7 +118,6 @@
 						// https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
 					}
 				}
-
 			}
 
 			// e.key finds string, e.which finds number associated with key
@@ -145,6 +153,7 @@
 							if(x > brick.x && x < brick.x + brickWidth && y > brick.y && y < brick.y + brightHeight ) {
 								dy = -dy;
 								brick.status = 0;
+								score++;
 							}
 						}
 					}
@@ -170,6 +179,7 @@
 
 			function draw() {
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				drawScore();
 				drawBricks();
 				drawBall();
 				movePaddle();
@@ -177,7 +187,7 @@
 				x+=dx;
 				y+=dy;
 				checkBoundaries();
-				// pauseGame()
+				pauseGame()
 			}
 			document.addEventListener('keydown', handleKeyDown, false);
 			document.addEventListener('keyup', handleKeyUp, false)
